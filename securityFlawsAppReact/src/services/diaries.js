@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios'
-const baseUrl = 'http://localhost:3002/api/diaries'
+const baseUrl = 'https://security-issues-backened.onrender.com/api/diaries'
 
 // Initialize the token as null first
 // let token = null
