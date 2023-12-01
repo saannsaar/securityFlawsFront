@@ -118,6 +118,7 @@ const App = () => {
   const handleDelete = async (deletethisD) => {
     if (window.confirm(`Are you sure you want to remove ${deletethisD.title}?`)) {
       try {
+        console.log(deletethisD)
         await diaryService.remove(deletethisD.id)
         if (diaries.indexOf(deletethisD)) {
           diaries.splice(diaries.indexOf(deletethisD), 1)
