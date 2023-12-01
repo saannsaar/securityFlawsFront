@@ -43,7 +43,9 @@ const CreateDiary = ({ createNewDiary }) => {
       } }> Submit </button>
     </form><div ref={divRef}>
 
-      </div></>
+      </div>
+      <div>
+        {title} {content}</div></>
   )
 }
 
