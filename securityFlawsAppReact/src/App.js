@@ -70,8 +70,9 @@ const App = () => {
     // This way of implementing error message is not a good choice since it makes
     // it possible to me a DOM-based XSS attack, DOM mutation directly makes it easier for an attacker
     // to injext it with data containing malicious JS 
+    console.log(error)
     const notiElement = document.getElementById('notiId')
-    const notiMessage = `${error}`
+    const notiMessage = `${JSON.stringify(error)}`
     notiElement.append(notiMessage)
     // More safer way:
     //
@@ -96,9 +97,12 @@ const App = () => {
       }, 4000)
     }).catch(error => {
       setNotiType('error')
-      console.log(error.response.data.message)
+      console.log(error
+        )
       // CWE-209: Generation of Error Message Containing Sensitive Information
-      setNotification(`Blog creation failed because of: " ${error.response.data.message}`)
+      const notiElement = document.getElementById('notiId')
+      const notiMessage = `${JSON.stringify(error)}`
+      notiElement.append(notiMessage)
       setTimeout(() => {
         setNotification(null)
       }, 4000)

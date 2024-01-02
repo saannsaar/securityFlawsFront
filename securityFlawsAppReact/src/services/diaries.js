@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios'
-const baseUrl = 'https://security-issues-backened.onrender.com/api/diaries'
+const baseUrl = 'http://localhost:3002/api/diaries'
 
 // Initialize the token as null first
 // let token = null
@@ -16,17 +16,40 @@ const getAll = (user) => {
     //     headers: { Authorization: token },
     //   }
     // Should send config with the get method
-  const request = axios.get(baseUrl, user)
+
+    const csrfToken = document.cookie
+    .split('; ')
+    .find((cookie) => cookie.startsWith('XSRF-TOKEN='))
+    .split('=')[1];
+  
+
+  const request = axios.get(baseUrl, user, {
+    headers:{'XSRF-TOKEN': csrfToken,
+    'Content-Type': 'application/json',},
+    withCredentials: true,
+    credentials: 'include',
+
+  })
   return request.then(response => response.data)
 }
 
 const create = async newObject => {
+  const csrfToken = document.cookie
+  .split('; ')
+  .find((cookie) => cookie.startsWith('XSRF-TOKEN='))
+  .split('=')[1];
   console.log('diaries.js')
   // const config = {
   //   headers: { Authorization: token },
   // }
   // Should send config with the post method
-  const response = await axios.post(baseUrl, newObject)
+  const response = await axios.post(baseUrl, newObject, {
+    headers:{'XSRF-TOKEN': csrfToken,
+    'Content-Type': 'application/json',},
+    withCredentials: true,
+    credentials: 'include',
+
+  })
   return response.data
 }
 
