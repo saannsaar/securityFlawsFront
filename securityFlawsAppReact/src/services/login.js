@@ -10,18 +10,15 @@ const login = async (cred) => {
   .find((cookie) => cookie.startsWith('XSRF-TOKEN='))
   .split('=')[1];
 
-  const config = {
-    headers: {'XSRF-TOKEN': csrfToken}
-  }
-
-  console.log(config)
   const response = await axios.post(baseUrl, cred,  {
+
     headers:{'XSRF-TOKEN': csrfToken,
     'Content-Type': 'application/json',},
     withCredentials: true,
     credentials: 'include',
 
   })
+  console.log(response)
   return response.data
 }
 

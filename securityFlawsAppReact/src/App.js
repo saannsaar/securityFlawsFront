@@ -5,8 +5,11 @@ import CreateDiary from './components/CreateDiary'
 import loginService from './services/login'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
+import axios from 'axios'
 
 const App = () => {
+
+  
   const [diaries, setDiaries] = useState([])
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
